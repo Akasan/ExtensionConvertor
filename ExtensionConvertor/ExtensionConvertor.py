@@ -1,3 +1,4 @@
+from os.path import dirname
 from typing import Optional, List
 
 
@@ -33,3 +34,11 @@ class ExtensionConvertor:
     def add_post_text(self, post_text: str) -> str:
         split = _split(self.BASE_FILENAME)
         return _join(split[:-1]) + post_text + f".{split[-1]}"
+
+    @property
+    def folder(self) -> str:
+        return dirname(self.BASE_FILENAME)
+
+    @property
+    def extension(self) -> str:
+        return _split(self.BASE_FILENAME)[-1]
