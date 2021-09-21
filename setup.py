@@ -12,8 +12,7 @@ setup(
     license="MIT",
     author="Akagawa Daisuke",
     url="http://github.com/Akasan/ExtensionConvertor",
-    packages=["ExtensionConvertor",
-              "ExtensionConvertor/src"]
+    packages=["ExtensionConvertor"],
     include_package_data=True,
     zip_safe=False,
 )
