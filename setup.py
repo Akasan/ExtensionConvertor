@@ -8,7 +8,7 @@ def _get_requires_from_file(filename):
 
 setup(
     name="ExtensionConvertor",
-    version="1.0.0",
+    version="1.0.1",
     license="MIT",
     author="Akagawa Daisuke",
     url="http://github.com/Akasan/ExtensionConvertor",
