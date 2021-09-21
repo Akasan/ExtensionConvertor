@@ -1,4 +1,4 @@
-from os.path import dirname
+from os.path import dirname, abspath, exists
 from typing import Optional, List
 
 
@@ -23,8 +23,9 @@ class ExtensionConvertor:
         >>> conv.add_post_text("_hoge")
         hoge_hoge.jpg
     """
-    def __init__(self, base_filename: str):
-        self.BASE_FILENAME = base_filename
+    def __init__(self, base_filename: str, to_abs: bool = True):
+        assert exists(base_filename)
+        self.BASE_FILENAME = abspath(base_filename) if to_abs else base_filename
 
     def replace_extension(self, new_ext: str, post_text: Optional[str] = None) -> str:
         split = _split(self.BASE_FILENAME)
