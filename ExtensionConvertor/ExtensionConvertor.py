@@ -36,6 +36,15 @@ class ExtensionConvertor:
         assert exists(base_filename)
         self.BASE_FILENAME = abspath(base_filename) if to_abs else base_filename
 
+    def replace_base_extension(self, new_ext: str):
+        """replace base file name's extension
+
+        Arguments:
+        ----------
+            new_ext {str} -- new extension of base file name
+        """
+        self.BASE_FILENAME = self.replace_extension(new_ext)
+
     def replace_extension(self, new_ext: str, post_text: Optional[str] = None) -> str:
         """ replace extension
 
