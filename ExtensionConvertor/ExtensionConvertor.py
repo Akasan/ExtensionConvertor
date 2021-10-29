@@ -1,4 +1,5 @@
-from os.path import dirname, abspath, exists
+from pathlib import PurePath
+from os.path import dirname, abspath, exists, basename, join
 from typing import Optional, List
 
 
@@ -45,7 +46,7 @@ class ExtensionConvertor:
         """
         self.BASE_FILENAME = self.replace_extension(new_ext)
 
-    def replace_extension(self, new_ext: str, post_text: Optional[str] = None) -> str:
+    def replace_extension(self, new_ext: str, post_text: str = "") -> str:
         """ replace extension
 
         Arguments:
@@ -54,7 +55,7 @@ class ExtensionConvertor:
 
         Keyword Arguments:
         ------------------
-            post_text {Optional[str]} -- post text if you want
+            post_text {str} -- post text if you want (default: "")
 
         Returns:
         --------
@@ -63,6 +64,9 @@ class ExtensionConvertor:
         split = _split(self.BASE_FILENAME)
         base = _join(split[:-1]) + "{}.{}"
         return base.format("", new_ext) if post_text is None else base.format(post_text, new_ext)
+        # purepath = PurePath(self.BASE_FILENAME)
+        # old_ext = purepath.suffix
+        # return purepath.stem + post_text + f".{new_ext}"
 
     def add_post_text(self, post_text: str) -> str:
         """ add post text, without replacing extension
@@ -97,3 +101,8 @@ class ExtensionConvertor:
             {str} -- extension
         """
         return _split(self.BASE_FILENAME)[-1]
+
+    def add_sub_folder(self, sub_folder: str):
+        base = basename(self.BASE_FILENAME)
+        folder = self.BASE_FILENAME.replace(base, "")
+        self.BASE_FILENAME = join(join(folder, sub_folder), base)
